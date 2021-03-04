@@ -5,7 +5,7 @@ void main(List<String> arguments) {
   var entradaNota = stdin.readLineSync();
   var nota = double.parse(entradaNota);
 
-  print('Informe o % da sua presença: ');
+  print('Informe a % da sua presença: ');
   var entradaPresenca = stdin.readLineSync();
   var presenca = int.parse(entradaPresenca);
 
