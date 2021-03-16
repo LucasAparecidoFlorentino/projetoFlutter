@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       ),
       routes:{
         HOME:(context)=>ListaProdutos(),
-        FORM_PRODUTO:(context)=>FormProdutos()
+        FORM_PRODUTO:(context)=>ProdutoForm()
       },
     );
   }

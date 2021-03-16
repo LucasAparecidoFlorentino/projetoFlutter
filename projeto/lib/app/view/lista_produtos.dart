@@ -8,12 +8,10 @@ class ListaProdutos extends StatelessWidget {
   final _back = ListaProdutosBack();
 
   CircleAvatar circleAvatar(String url){
-    try{
-      return CircleAvatar(backgroundImage: NetworkImage(url));
-    }catch(e){
-      return CircleAvatar(child: Icon(Icons.add_business_sharp));
+    return (Uri.tryParse(url).isAbsolute) ?
+      CircleAvatar(backgroundImage: NetworkImage(url))
+      : CircleAvatar(child: Icon(Icons.add_business_sharp));
     }
-  }
 
   Widget iconEditButton(Function onPressed){
     return IconButton(icon: Icon(Icons.edit), color: Colors.green, onPressed: onPressed);
