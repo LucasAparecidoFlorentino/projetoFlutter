@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:projeto/app/view/produto_form_back.dart';
 
 class ProdutoForm extends StatelessWidget {
+  final _form = GlobalKey<FormState>();
 
-  Widget fieldName(){
+  Widget fieldName(ProdutoFormBack back){
     return TextFormField(
+      validator: back.validateName,
+      onSaved: (newValue) =>back.produto.nome = newValue,
+      initialValue: back.produto.nome,
       decoration: InputDecoration(
         labelText: 'Nome:'
       )
     );
   }
 
-  Widget fieldQuantidade(){
+  Widget fieldQuantidade(ProdutoFormBack back){
     var mask = MaskTextInputFormatter(mask: '###');
     return TextFormField(
       inputFormatters: [mask],
@@ -22,7 +27,9 @@ class ProdutoForm extends StatelessWidget {
     );
   }
 
-  Widget fieldPreco(){
+  void validator() => validator;
+
+  Widget fieldPreco(ProdutoFormBack back){
     var mask = MaskTextInputFormatter(mask: '###.##');
     return TextFormField(
       inputFormatters: [mask],
@@ -34,8 +41,9 @@ class ProdutoForm extends StatelessWidget {
     );
   }
 
-  Widget fieldUrlImage(){
+  Widget fieldUrlImage(ProdutoFormBack back){
     return TextFormField(
+      initialValue: back.produto.urlAvatar,
       decoration: InputDecoration(
         labelText: 'Endereço da Foto'
       )
@@ -44,22 +52,32 @@ class ProdutoForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _back = ProdutoFormBack(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Cadastro de Produto'),
         actions: [
-          IconButton(icon: Icon(Icons.save), onPressed: null,)
+          IconButton(icon: Icon(Icons.save), 
+          onPressed: (){
+            _form.currentState.validate();
+            _form.currentState.save();
+            if(_back.isValid){
+              _back.save();
+              Navigator.of(context).pop();
+            }
+          })
         ],
       ),
       body: Padding(
         padding: EdgeInsets.all(10),
         child: Form(
+          key: _form,
           child: Column(
             children: [
-              fieldName(),
-              fieldQuantidade(),
-              fieldPreco(),
-              fieldUrlImage()
+              fieldName(_back),
+              fieldQuantidade(_back),
+              fieldPreco(_back),
+              fieldUrlImage(_back)
             ],
           ),
         ),
