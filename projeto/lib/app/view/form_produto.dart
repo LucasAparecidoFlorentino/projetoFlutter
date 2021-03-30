@@ -20,6 +20,7 @@ class ProdutoForm extends StatelessWidget {
     var mask = MaskTextInputFormatter(mask: '###');
     return TextFormField(
       inputFormatters: [mask],
+      onSaved: (newValue) =>back.produto.quantidade = int.parse(newValue),
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         labelText: 'Quantidade:'
@@ -30,9 +31,10 @@ class ProdutoForm extends StatelessWidget {
   void validator() => validator;
 
   Widget fieldPreco(ProdutoFormBack back){
-    var mask = MaskTextInputFormatter(mask: '###.##');
+    var mask = MaskTextInputFormatter(mask: '##.##');
     return TextFormField(
       inputFormatters: [mask],
+      onSaved: (newValue) =>back.produto.preco = double.parse(newValue),
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
         labelText: 'Preço:',
@@ -43,6 +45,7 @@ class ProdutoForm extends StatelessWidget {
 
   Widget fieldUrlImage(ProdutoFormBack back){
     return TextFormField(
+      onSaved: (newValue) =>back.produto.urlAvatar = newValue,
       initialValue: back.produto.urlAvatar,
       decoration: InputDecoration(
         labelText: 'Endereço da Foto'

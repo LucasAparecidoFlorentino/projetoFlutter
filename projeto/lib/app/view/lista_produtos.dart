@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:projeto/app/domain/entities/produto.dart';
-import 'package:projeto/app/my_app.dart';
 import 'package:projeto/app/view/lista_produtos_back.dart';
+
 
 class ListaProdutos extends StatelessWidget {
   final _back = ListaProdutosBack();
@@ -54,7 +54,7 @@ class ListaProdutos extends StatelessWidget {
             IconButton(
                 icon: Icon(Icons.local_atm_rounded),
                 onPressed: () {
-                  Navigator.of(context).pushNamed(MyApp.FORM_PRODUTO);
+                  _back.goToForm(context);
                 })
           ],
         ),
@@ -73,6 +73,9 @@ class ListaProdutos extends StatelessWidget {
                       return ListTile(
                         leading: circleAvatar(produto.urlAvatar),
                         title: Text(produto.nome),
+                        onTap: (){
+                          _back.goToDetails(context, produto);
+                        },
                         subtitle: Text('${produto.quantidade}'),
                         trailing: Container(
                           width: 100,

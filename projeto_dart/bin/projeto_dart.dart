@@ -1,4 +1,4 @@
-import 'package:projeto_dart/projeto_dart.dart' as projeto_dart;
+
 import 'dart:io';
 
 void main(List<String> arguments) {

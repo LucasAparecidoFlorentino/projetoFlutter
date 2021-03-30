@@ -1,7 +1,3 @@
-
-
-import 'dart:ffi';
-
 import 'package:get_it/get_it.dart';
 import 'package:projeto/app/domain/entities/produto.dart';
 import 'package:projeto/app/domain/exception/domain_layer_exception.dart';
@@ -41,12 +37,16 @@ class ProdutoService{
   validatePreco(double preco){
     if(preco == null){
       throw new DomainLayerExcpetion('O preço é obrigatorio.');
+    }else{
+      return preco;
     }
   }
 
   validateQuantidade(int quantidade){
     if(quantidade == null){
       throw new DomainLayerExcpetion('A quantidade é obrigatoria.');
+    }else{
+      return quantidade;
     }
   }
 }
