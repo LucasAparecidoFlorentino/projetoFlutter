@@ -48,7 +48,8 @@ class ProdutoForm extends StatelessWidget {
       onSaved: (newValue) =>back.produto.urlAvatar = newValue,
       initialValue: back.produto.urlAvatar,
       decoration: InputDecoration(
-        labelText: 'Endereço da Foto'
+        labelText: 'Endereço da Foto',
+        hintText: 'http://site.com'
       )
     );
   }
